@@ -21,5 +21,13 @@ namespace CabInvoiceTest
             double result = invoice.CalculateMultipleRide(rides);
             Assert.AreEqual(result, 46);
         }
+        [Test]
+        public void InputInInteger_ShouldReturn_MultipleRides_TotalFair_InvoiceSummary()
+        {
+            CabInvoiceGenerator invoice = new CabInvoiceGenerator(RideType.NORMAL);
+            Ride[] rides1 = { new Ride(15, 10), new Ride(35, 35), new Ride(25, 15) };
+            InvoiceSummery result = invoice.CalculateMultipleRideSummery(rides1);
+            Assert.AreEqual(result.totalNumberOfRides, 3);
+        }
     }
 }
