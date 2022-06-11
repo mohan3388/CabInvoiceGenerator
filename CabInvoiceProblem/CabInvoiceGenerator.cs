@@ -12,8 +12,9 @@ namespace CabInvoiceProblem
         private readonly int Min_Fair;
         private readonly int Fair_Per_Km;
             private readonly int Fair_Per_Min;
+        RideRepository repository = new RideRepository();
 
-            public CabInvoiceGenerator(RideType rideType)
+        public CabInvoiceGenerator(RideType rideType)
         {
             this.rideType = rideType;
             try
@@ -99,6 +100,15 @@ namespace CabInvoiceProblem
                 }
             }
             return new InvoiceSummery(ride.Length, result);
+        }
+        public void MapUserId(string usreId, Ride[] rides)
+        {
+            this.repository.AddRides(usreId, rides);
+        }
+        public InvoiceSummery GetRideInvoiceSummary(string userId)
+        {
+            Ride[] result = this.repository.GetRide(userId);
+            return CalculateMultipleRideSummery(result);
         }
     }
 }
