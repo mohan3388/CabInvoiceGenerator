@@ -41,6 +41,13 @@ public class Program
                     InvoiceSummery summary = invoiceSummary.GetRideInvoiceSummary("2001abc");
                     Console.WriteLine("Total Number of rides" + summary.totalNumberOfRides + "\n" + "Total Fair" + summary.totalFair + "\n" + "Average fair:->" + summary.averageFair);
                     break;
+                 case 5:
+                    CabInvoiceGenerator preInvoice = new CabInvoiceGenerator(RideType.PREMIER);
+                    Ride[] preRides = { new Ride(15, 10), new Ride(35, 35), new Ride(25, 15), new Ride(15, 15), new Ride(50, 60) };
+                    InvoiceSummery preInvoSummary = preInvoice.InvoiceSummaryForPremiumRides(preRides);
+                    Console.WriteLine("Total Number of Rides:->" + preInvoSummary.totalNumberOfRides + "\n" + "Total Fare:->" + preInvoSummary.totalFair + "\n" + "Average Fare:->" + preInvoSummary.averageFair);
+
+                    break;
                 default: Console.WriteLine("enter correct option"); 
                     break;
             }
